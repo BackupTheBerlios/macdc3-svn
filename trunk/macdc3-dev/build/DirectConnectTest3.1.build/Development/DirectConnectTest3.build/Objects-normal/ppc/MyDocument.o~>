@@ -1,0 +1,11 @@
+/Users/varun/DirectConnectTest3/MyDocument.h:23: error: ISO C++ forbids declaration of 'VECDCConnection' with no type
+/Users/varun/DirectConnectTest3/MyDocument.h:23: error: expected `;' before '*' token
+/Users/varun/DirectConnectTest3/MyDocument.m: In function 'objc_object* -[MyDocument init](MyDocument*, objc_selector*)':
+/Users/varun/DirectConnectTest3/MyDocument.m:17: error: 'hubConnection' was not declared in this scope
+/Users/varun/DirectConnectTest3/MyDocument.m:17: warning: invalid receiver type 'int'
+/Users/varun/DirectConnectTest3/MyDocument.m: In function 'void -[MyDocument stream:handleEvent:](MyDocument*, objc_selector*, NSStream*, NSStreamEvent)':
+/Users/varun/DirectConnectTest3/MyDocument.m:36: error: 'buffer' was not declared in this scope
+/Users/varun/DirectConnectTest3/MyDocument.m: In function 'void -[MyDocument sendString:](MyDocument*, objc_selector*, NSString*)':
+/Users/varun/DirectConnectTest3/MyDocument.m:91: error: 'toHost' was not declared in this scope
+/Users/varun/DirectConnectTest3/MyDocument.m:93: confused by earlier errors, bailing out
+{standard input}:10:FATAL:.abort  detected.  Assembly stopping.
