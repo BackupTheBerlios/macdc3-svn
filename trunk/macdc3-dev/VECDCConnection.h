@@ -32,5 +32,6 @@ typedef enum {
 - (void)parseCommand:(NSString *) theCommand;
 - (char *)lockToKey:(NSString *) lock;
 - (void) sendString:(NSString *) string;
+- (void)sendInfoString;
 
 @end

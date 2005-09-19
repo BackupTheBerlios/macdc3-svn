@@ -23,7 +23,7 @@
 - (bool) connectToHost
 {
 	NSLog(@"Opening connection to host");
-	[NSStream getStreamsToHost:[NSHost hostWithName:@"cudc.dyndns.org"] port:4080
+	[NSStream getStreamsToHost:[NSHost hostWithName:@"cudc.dyndns.org"] port:4040
 		inputStream:&fromHost outputStream:&toHost];
 	[fromHost retain]; [toHost retain];
 	[fromHost setDelegate: self]; [toHost setDelegate: self];
@@ -54,6 +54,7 @@
 		bytes = [(NSInputStream*)theStream read:(UInt8*)&buffer maxLength:sizeof(buffer)];
 		NSString *inputString = [[NSString alloc]
 			initWithBytes:&buffer length:bytes encoding:NSUTF8StringEncoding];
+		NSLog(@"%@", inputString);
 		//[textField insertText:inputString];
 		//[textField insertText:@"\n"];
 		NSArray *inputLines = [inputString componentsSeparatedByString:@"|"];
@@ -100,17 +101,34 @@
 	else if ([theCommand caseInsensitiveCompare:@"$GetPass"] == NSOrderedSame)
 	{
 		NSLog(@"Asking for Pass!");
-		[self sendString:[NSString stringWithString:@"$MyPass testtest|"]];
+		[self sendString:[NSString stringWithString:@"$MyPass 78963a|"]];
+	}
+	else if ([command caseInsensitiveCompare:@"$LogedIn"] == NSOrderedSame)
+	{
+		[self sendString:[NSString stringWithString:@"$Version 1.0091|$GetNickList|"]];
+		NSLog(@"Time to send info!");
+		[self sendInfoString];
 	}
 }
 
 - (void)sendString:(NSString *)aString
 {
-/*	NSLog(aString);
+	NSLog(aString);
 	[toHost write:(uint8_t *)([aString UTF8String])
 		maxLength:([aString length]+1)*sizeof(uint8_t)];
 	[toHost write:(uint8_t *)("|") maxLength:1];
-*/}
+}
+
+- (void)sendInfoString
+{
+	char infoString[] ="$MyINFO $ALL smartperson something$ $Cable";
+	[toHost write:(uint8_t *)(infoString) maxLength:(strlen(infoString)*sizeof(uint8_t))];
+	char speedByte = 1;
+	[toHost write:(uint8_t *)(&speedByte) maxLength:(sizeof(uint8_t))];
+	char infoString2[] = "$someone@something.com$1000000000$|";
+	[toHost write:(uint8_t *)(infoString2) maxLength:(strlen(infoString2)*sizeof(uint8_t))];
+	NSLog(@"%s", infoString);
+}
 
 - (void)sendKey:(char *)someBytes ofLength:(int)length
 {

@@ -1,4 +1,0 @@
-In file included from /Users/varun/DirectConnectTest3/VECDCConnection.m:9:
-/Users/varun/DirectConnectTest3/VECDCConnection.h:21: error: parse error before '(' token
-/Users/varun/DirectConnectTest3/VECDCConnection.m:54: warning: incomplete implementation of class 'VECDCConnection'
-/Users/varun/DirectConnectTest3/VECDCConnection.m:54: warning: method definition for '-connectToHost' not found

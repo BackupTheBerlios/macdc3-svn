@@ -32,6 +32,7 @@
 
 - (IBAction)send:(id)sender
 {
+	NSLog(@"Sending command");
 	//[toHost write:[[commandField stringValue] cString] maxLength:[[commandField stringValue] length]];
 	[hubConnection sendString:[commandField stringValue]];
 }
